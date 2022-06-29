@@ -1,28 +1,35 @@
 package com.gamecontroller.models;
 
+import com.gamecontroller.Entity;
+import com.gamecontroller.GameAction;
 import com.gamecontroller.GameModel;
 
-public abstract class Mob extends GameModel {
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
+public abstract class Mob extends Entity {
+    public static final int Player = 0;
+    public static final int TIE_Fighter = 1;
+    public static final int Monster = 2;
+    int mobtype = 0;
     double health = 1;
 
-    double getHealth() {
+    public void setMobtype(int mobtype) {
+        this.mobtype = mobtype;
+    }
+
+    public int getMobtype() {
+        return mobtype;
+    }
+
+    public double getHealth() {
         return health;
     }
 
-    void damage(int dmg) {
+    public void damage(double dmg) {
         health -= dmg;
     }
+
+    public abstract void calculate_death(ArrayList<Mob> a, int mob_id);
 }
 
-class TIE_Figther extends Mob {
-
-    TIE_Figther(){
-        speed = 2;
-    }
-
-    @Override
-    public void startbehavior() {
-
-    }
-}

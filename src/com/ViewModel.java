@@ -4,40 +4,44 @@ package com;
 import com.graphics.displayable;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
 
-public class ViewModel implements displayable {
-    Image image;
+public class ViewModel {
+    BufferedImage image;
     double height;
     double width;
-
+    protected double direction = 0; //in degrees, North = 0
     //    public ViewModel(Image img){
 //        image = img;
 //        height = img.getHeight(null);
 //        width = img.getWidth(null);
 //    }
-    public Image getImage(){
+    public BufferedImage getImage(){
         return image;
     }
-
-    public void setImage(Image img){
+    public void setImage(BufferedImage img){
         image = img;
     }
-
     public double getHeight() {
         return height;
     }
     public void setHeight(double h) {
         height = h;
     }
-
-
-
     public double getWidth() {
         return width;
     }
-
     public void setWidth(double w){
         width = w;
+    }
+
+    public double getDirection() {
+        return direction;
+    }
+
+    public void setDirection(double direction) {
+        this.direction = direction;
     }
 
     double x_cord = 0;

@@ -8,7 +8,15 @@ import java.util.Collection;
 import static java.lang.Thread.sleep;
 
 public class GraphicsModule {
-    MainFrame mainFrame = new MainFrame(800, 600);
+    int xsize;
+    int ysize;
+    MainFrame mainFrame;
+    public GraphicsModule(int x, int y){
+        xsize = x;
+        ysize = y;
+        mainFrame = new MainFrame(xsize, ysize);
+    };
+
     public void startmainframe(){
         mainFrame.startshowing();
     }
@@ -17,12 +25,11 @@ public class GraphicsModule {
     }
     public void refreshframe(){
         mainFrame.refresh();
-        try{
-            sleep(1);
-        }
-        catch (Exception e){
-
-        }
+    }
+    public void setHP(int hp){
+        mainFrame.setHP(hp);
+    };
+    public void clearmodels(){
         mainFrame.clearmain();
     }
     public boolean getkeystatus(int code){

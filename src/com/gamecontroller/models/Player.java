@@ -15,14 +15,14 @@ public class Player extends Mob {
         controller = c;
         health = 100;
         speed = 5;
-        radius = 45;
+        radius = 30;
     }
 
     @Override
     public void startbehavior() {
         GameAction move = new GameAction(GameAction.MOVE);
-        int x = 0;
-        int y = 0;
+        double x = 0;
+        double y = 0;
         if (controller.getkeystatus(KeyEvent.VK_RIGHT)) {
             x += speed;
         }
@@ -37,7 +37,7 @@ public class Player extends Mob {
         }
         move.putArgs(x, y);
         actions.add(move);
-        if (getTick_after_spawn() % 50 == 0){
+        if (getTick_after_spawn() % 40 == 0){
             GameAction shoot = new GameAction(GameAction.SHOOT);
             shoot.putArgs(Missile.LASER, 10);
             actions.add(shoot);
@@ -45,4 +45,8 @@ public class Player extends Mob {
 
     }
 
+    @Override
+    public void calculate_death(ArrayList<Mob> a, int mob_id) {
+        a.remove(mob_id);
+    }
 }

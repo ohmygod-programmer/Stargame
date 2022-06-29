@@ -1,27 +1,42 @@
 package com.gamecontroller.models;
 
+import com.gamecontroller.Entity;
 import com.gamecontroller.GameAction;
 import com.gamecontroller.GameModel;
 
 import static java.lang.Math.*;
 
-public class Missile extends GameModel {
+public class Missile extends Entity {
     public static final int LASER = 1;
+    public static final int BIG_LASER = 2;
     int type = LASER;
     double damage = 10;
+
+    public int getType() {
+        return type;
+    }
+
+    public double getDamage() {
+        return damage;
+    }
 
     public Missile(int type, double damage) {
         this.type = type;
         this.damage = damage;
-        if (type == LASER) {
-            speed = 10;
+        switch (type) {
+            case (LASER):
+                speed = 5;
+                break;
+            case (BIG_LASER):
+                speed = 4;
+                break;
         }
     }
 
     @Override
     public void startbehavior() {
         GameAction move = new GameAction(GameAction.MOVE);
-        move.putArgs(speed * cos(toRadians(direction)), speed * sin(toRadians(direction)));
+        move.putArgs(-speed * sin(toRadians(direction)), -speed * cos(toRadians(direction)));
         actions.add(move);
     }
 
