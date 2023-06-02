@@ -1,7 +1,7 @@
 package com.graphics;
 
 import com.ViewModel;
-import com.main;
+import com.StarGameApplication;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -22,7 +22,7 @@ public class MainFrame extends JFrame {
 
     MainFrame(int xsize, int ysize ){
         setTitle("Game");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         addKeyListener(new KL());
         mainboard =  new Board(xsize, ysize);
         add(mainboard);
@@ -77,7 +77,8 @@ class Board extends JPanel {
     private BufferedImage tryreadimg(String s){
         BufferedImage img;
         try {
-            img= ImageIO.read(new File(s));//new ImageIcon("src/laser.png").getImage();
+            img= ImageIO.read(getClass().getResource(s));//new ImageIcon("src/laser.png").getImage();
+
         }
         catch (Exception e){
             img = errorimg;
@@ -105,21 +106,18 @@ class Board extends JPanel {
     ArrayList<ViewModel> models = new ArrayList<ViewModel>();
     public static BufferedImage errorimg = null;
     public Board(int xsize, int ysize) {
-        try {
-            errorimg = ImageIO.read(new File("src/Error.jpg"));
-        }
-        catch (Exception e){}
-        sky = tryreadimg("src/sky.jpg");
-        BufferedImage img_of_hpone = tryreadimg("src/1.png");
-        BufferedImage img_of_hptwo = tryreadimg("src/2.png");
-        BufferedImage img_of_hpthree = tryreadimg("src/3.png");
-        BufferedImage img_of_hpfour = tryreadimg("src/4.png");
-        BufferedImage img_of_hpfive = tryreadimg("src/5.png");
-        BufferedImage img_of_hpsix = tryreadimg("src/6.png");
-        BufferedImage img_of_hpseven = tryreadimg("src/7.png");
-        BufferedImage img_of_hpeight = tryreadimg("src/8.png");
-        BufferedImage img_of_hpnine = tryreadimg("src/9.png");
-        BufferedImage img_of_hpzero = tryreadimg("src/0.png");
+        errorimg = tryreadimg("/Error.jpg");
+        sky = tryreadimg("/sky.jpg");
+        BufferedImage img_of_hpone = tryreadimg("/1.png");
+        BufferedImage img_of_hptwo = tryreadimg("/2.png");
+        BufferedImage img_of_hpthree = tryreadimg("/3.png");
+        BufferedImage img_of_hpfour = tryreadimg("/4.png");
+        BufferedImage img_of_hpfive = tryreadimg("/5.png");
+        BufferedImage img_of_hpsix = tryreadimg("/6.png");
+        BufferedImage img_of_hpseven = tryreadimg("/7.png");
+        BufferedImage img_of_hpeight = tryreadimg("/8.png");
+        BufferedImage img_of_hpnine = tryreadimg("/9.png");
+        BufferedImage img_of_hpzero = tryreadimg("/0.png");
         setsizeandimage(HPone, img_of_hpone);
         setsizeandimage(HPtwo, img_of_hptwo);
         setsizeandimage(HPthree, img_of_hpthree);
@@ -148,7 +146,7 @@ class Board extends JPanel {
         // react to imageUpdate() events triggered by g.drawImage()
 
         // draw our graphics.
-        long tick = main.getTick_main();
+        long tick = StarGameApplication.getTick_main();
         g.drawImage(sky, 0, (int)(tick/3 % sky.getHeight()) - sky.getHeight(), sky.getWidth(), sky.getHeight(), null);
         g.drawImage(sky, 0, (int)(tick/3 % sky.getHeight()), sky.getWidth(), sky.getHeight(), null);
         drawModels(g);
@@ -178,8 +176,8 @@ class Board extends JPanel {
     }
 
     public void drawHP(Graphics g){
-        int x = main.XWINDOWSIZE-10;
-        int y = main.YWINDOWSIZE-30;
+        int x = StarGameApplication.XWINDOWSIZE-10;
+        int y = StarGameApplication.YWINDOWSIZE-30;
         int hp = player_hp;
         double width = 0;
         BufferedImage img = null;
@@ -227,7 +225,9 @@ class Board extends JPanel {
                     img = HPnine.getImage();
                     width = HPnine.getWidth();
                     break;
-
+                default:
+                    img = errorimg;
+                    width = errorimg.getWidth();
             }
             x-=Math.round(width);
 

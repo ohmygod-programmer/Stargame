@@ -2,7 +2,6 @@ package com.gamecontroller.models;
 
 import com.gamecontroller.Entity;
 import com.gamecontroller.GameAction;
-import com.gamecontroller.GameModel;
 
 import static java.lang.Math.*;
 

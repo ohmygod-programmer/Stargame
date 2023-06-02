@@ -1,7 +1,5 @@
 package com.gamecontroller;
 
-import com.ViewModel;
-
 import java.util.LinkedList;
 
 public abstract class Entity {
@@ -53,7 +51,7 @@ public abstract class Entity {
     public GameAction popaction() {
         return actions.pop();
     }
-    public Entity(){};
+    protected Entity(){};
 
 }
 

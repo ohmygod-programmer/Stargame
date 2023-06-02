@@ -1,10 +1,7 @@
 package com.gamecontroller.models;
 
 import com.gamecontroller.Entity;
-import com.gamecontroller.GameAction;
-import com.gamecontroller.GameModel;
 
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public abstract class Mob extends Entity {

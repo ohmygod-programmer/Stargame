@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 import static java.lang.Thread.sleep;
 
-public class main {
+public class StarGameApplication {
     static final public int XWINDOWSIZE = 800;
     static final public int YWINDOWSIZE = 600;
     static final public int MAXFPS = 60;
@@ -147,7 +147,8 @@ public class main {
     private static BufferedImage tryreadimg(String s){
         BufferedImage img;
         try {
-            img= ImageIO.read(new File(s));//new ImageIcon("src/laser.png").getImage();
+            img= ImageIO.read(StarGameApplication.class.getResource(s));//new ImageIcon("src/laser.png").getImage();
+
         }
         catch (Exception e){
             img = errorimg;
@@ -161,26 +162,26 @@ public class main {
 
     public static void main(String[] args) {
         try {
-            errorimg = ImageIO.read(new File("src/Error.jpg"));
+            errorimg = ImageIO.read(new File("/Error.jpg"));
         }
         catch (Exception e){}
 
-        BufferedImage img_of_Laser = tryreadimg("src/Laser.png");
+        BufferedImage img_of_Laser = tryreadimg("/Laser.png");
         view_of_Laser.setImage(img_of_Laser);
         view_of_Laser.setHeight(20);
         view_of_Laser.setWidth(20);
         view_of_Big_Laser.setImage(img_of_Laser);
         view_of_Big_Laser.setHeight(40);
         view_of_Big_Laser.setWidth(40);
-        BufferedImage img_of_Player = tryreadimg("src/Main.png");
+        BufferedImage img_of_Player = tryreadimg("/Main.png");
         view_of_Player.setImage(img_of_Player);
         view_of_Player.setHeight(120);
         view_of_Player.setWidth(120);
-        BufferedImage img_of_TIE_Fighter = tryreadimg("src/TIE_Fighter.png");
+        BufferedImage img_of_TIE_Fighter = tryreadimg("/TIE_Fighter.png");
         view_of_TIE_Fighter.setImage(img_of_TIE_Fighter);
         view_of_TIE_Fighter.setHeight(60);
         view_of_TIE_Fighter.setWidth(60);
-        BufferedImage img_of_Monster = tryreadimg("src/Monster.png");
+        BufferedImage img_of_Monster = tryreadimg("/Monster.png");
         view_of_Monster.setImage(img_of_Monster);
         view_of_Monster.setHeight(80);
         view_of_Monster.setWidth(80);

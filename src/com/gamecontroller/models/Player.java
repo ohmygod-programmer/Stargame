@@ -1,7 +1,6 @@
 package com.gamecontroller.models;
 
 import com.gamecontroller.GameAction;
-import com.gamecontroller.GameModel;
 import com.graphics.GraphicsModule;
 
 import java.awt.event.KeyEvent;
